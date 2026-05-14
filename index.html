@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" /> 
+
+    <!-- Performance: Only preconnect if you actually use external fonts, although the ideal is to self-host them -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Sora:wght@300;600&family=Epilogue:wght@400;800&display=swap" rel="stylesheet">
+
+    <!-- PWA: Keep the manifest for offline resilience that we mentioned in the README -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO & Social: Elevate the language to an engineering level -->
+    <title>Andrés Vega — Software Engineering & Architectural Design</title>
+    <meta name="description" content="Technical workspace of Andrés Vega. Specializing in high-performance systems, Vertical Slice Architecture, and React 19 / NestJS ecosystems.">
+    <meta name="author" content="Andrés Vega">
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Andrés Vega | Software Engineering & Architectural Design">
+    <meta property="og:description" content="Reference implementation of modern software architecture and systems design.">
+    <meta property="og:url" content="https://andresvega.dev">
+    <meta property="og:image" content="/og-engineering.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Andrés Vega | Software Engineering & Architectural Design">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,14 @@
+User-agent: *
+# Lock of admin & private routes
+Disallow: /private/
+Disallow: /admin/
+# Lock of config files & intern scripts
+Disallow: /eslint.config.js
+Disallow: /vite.config.ts
+
+# Explicitly allow tracking of public features
+Allow: /projects/
+Allow: /profile/
+
+# Reference to the Sitemap to improve technical SEO
+Sitemap: https://andresvega.dev/sitemap.xml

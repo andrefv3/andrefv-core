@@ -1,0 +1,37 @@
+{
+  "id": "andrefv.core.v1",
+  "short_name": "Andres Vega",
+  "name": "Andrés Vega | Architectural Core",
+  "description": "Technical workspace specializing in high-performance software architecture and systemic resilience.",
+  "lang": "en-US",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "categories": ["education", "developer tools"],
+  "icons": [
+    {
+      "src": "/assets/pwa/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/pwa/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/pwa/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Architectural Dashboard"
+    }
+  ]
+}
