@@ -1,0 +1,1 @@
+export { BannerMain } from './Home/components/BannerMain/BannerMain';

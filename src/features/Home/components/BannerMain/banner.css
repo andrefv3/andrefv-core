@@ -1,0 +1,202 @@
+/* ==========================================================================
+   BANNER MAIN LAYOUT (MODERN SPEC & CSS NESTING)
+   ========================================================================== */
+#MainBanner {
+  width: 100%;
+  min-height: 100vh; /* Asegura abarcar el viewport en vez de depender de height fijos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--bg-app);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Contenedor adaptativo premium usando CSS Grid */
+.containBanner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 120px 40px 60px; /* Evita que el Header fijo pise el título */
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Estructura limpia de dos columnas sin floats */
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   LEFT CONTENT: TYPOGRAPHY & ACTIONS
+   ========================================================================== */
+.animate__contain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideFromBottom 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity; /* Optimización del ciclo de renderizado por GPU */
+}
+
+.banner-title {
+  font-family: var(--font-epilogue); /* Sincronizado con tus tokens globales */
+  font-size: clamp(40px, 5.5vw, 80px); 
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -1px; 
+  line-height: 1.15;
+  margin-bottom: 24px;
+  color: var(--text-app);
+  transition: color 0.3s ease;
+}
+
+/* Efecto de texto con contorno transparente adaptativo */
+.banner-name-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-app);
+  transition: -webkit-text-stroke 0.3s ease;
+}
+
+/* Contenedor de párrafo optimizado */
+.text-container {
+  max-width: 520px; /* Evita líneas de texto demasiado largas (mejora legibilidad) */
+  margin-bottom: 35px;
+
+  & p {
+    font-family: var(--font-epilogue);
+    line-height: 1.7;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text-muted); /* Cambia automáticamente entre slate-600 y slate-400 */
+    transition: color 0.3s ease;
+  }
+}
+
+/* Contenedor e interactividad del botón (Híbrido e Invertido síncronamente) */
+.contain-btn-slide {
+  display: flex;
+  align-items: center;
+}
+
+.btnSlideAbout {
+  padding: 18px 36px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  
+  background-color: var(--text-app);
+  color: var(--bg-app);
+  border: none;
+  cursor: pointer;
+  
+  /* Sombra sutil que se adapta usando las variables semánticas de botón de tu index.css */
+  box-shadow: 0 10px 25px var(--border-app);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.25s ease, 
+              color 0.25s ease,
+              box-shadow 0.25s ease;
+
+  & svg {
+    font-size: 16px;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover {
+    /* Al hacer hover, usamos tus tokens semánticos de botones reactivos */
+    background-color: var(--btn-hover);
+    color: var(--text-app);
+    transform: translate3d(0, -2px, 0);
+    
+    & svg {
+      transform: translate3d(0, 3px, 0); /* Animación sutil de rebote acelerada por hardware */
+    }
+  }
+
+  &:active {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   RIGHT CONTENT: 3D AVATAR SYSTEM
+   ========================================================================== */
+.image__banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.avatar-banner {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  /* Efecto levitación premium usando aceleración gráfica nativa */
+  animation: floatAvatar 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   OPTIMIZED ANIMATIONS (ACCELERATED BY GPU)
+   ========================================================================== */
+@keyframes slideFromBottom {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes floatAvatar {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -15px, 0); /* Efecto flotante suave sin alterar el flujo del layout */
+  }
+}
+
+/* Pantallas de Escritorio Medianas / Portátiles */
+@media (max-width: 1150px) {
+  .containBanner {
+    padding: 100px 30px 40px;
+    gap: 20px;
+  }
+}
+
+/* Mobile & Tablets (Pass to Vertical Layout of a Single Column) */
+@media (max-width: 950px) {
+  .containBanner {
+    grid-template-columns: 1fr; /* Una columna pura */
+    text-align: center;
+    justify-content: center;
+    padding-top: 140px;
+    gap: 50px;
+  }
+
+  .animate__contain {
+    align-items: center; /* Centra los textos y el botón corporativo */
+  }
+
+  .text-container {
+    margin: 0 auto 30px;
+  }
+
+  .image__banner {
+    order: -1; /* Envía la imagen del Avatar arriba del texto en móviles (Mejor UX visual) */
+  }
+
+  .avatar-banner {
+    max-width: 320px;
+  }
+}
