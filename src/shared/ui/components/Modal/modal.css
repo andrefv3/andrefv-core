@@ -1,0 +1,76 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Use a color semi-transparent based on the theme background */
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    /* Dynamic map of variables */
+    background-color: var(--DarkColorWrapper); /* White in light, Black in dark */
+    color: var(--LightColorWrapper); /* Inverse of the above */
+    border: 1px solid var(--borderLight);
+    width: 700px;
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific adjustments for Dark Mode using your .dark class */
+body.dark .modal-content {
+    background-color: var(--bgDarkTheme);
+    color: var(--DarkColorWrapper);
+    border: 1px solid var(--borderDark);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--btnLight);
+    border: none;
+    color: inherit;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+body.dark .modal-close {
+    background: var(--btnDark);
+}
+
+@media (max-width: 768px) {
+    .modal-overlay { align-items: flex-end; padding: 0; }
+    .modal-content {
+        width: 100%;
+        height: 85vh;
+        border-radius: 30px 30px 0 0;
+        padding: 30px 20px;
+        animation: slideUp 0.4s ease-out;
+    }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}

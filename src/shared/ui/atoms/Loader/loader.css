@@ -1,0 +1,91 @@
+.loader-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  z-index: 999999; /* Máxima prioridad sobre el Header */
+  pointer-events: all;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.4s ease;
+}
+
+.loader-container svg {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 110vh;
+  /* 🌤️ Modo Claro por defecto: Fondo blanco puro, limpio */
+  fill: var(--bg-app, #0b0f19);
+  transition: fill 0.3s ease;
+}
+
+.loader-container .load-text {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 16px;
+  text-transform: uppercase;
+  color: #0b0f19; 
+  transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   ADAPTACIÓN AL MODO OSCURO (Sincronizado con body.dark)
+   ========================================================================== */
+body.dark .loader-container svg {
+  /* 🔵 Tu nuevo azul oscuro profundo exacto de la plantilla */
+  fill: #0b0f19; 
+}
+
+body.dark .loader-container .load-text {
+  /* Texto blanco nítido contrastando sobre el azul profundo */
+  color: #ffffff; 
+}
+
+/* Si el body NO tiene la clase dark activa (Inyección explícita para modo claro) */
+body:not(.dark) .loader-container svg {
+  fill: #ffffff;
+}
+
+body:not(.dark) .loader-container .load-text {
+  color: #0b0f19;
+}
+
+/* ==========================================================================
+   🎬 ANIMACIONES Y TRANSICIONES DE SALIDA
+   ========================================================================== */
+.loader-container.exit-active {
+  transform: translateY(-100vh);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.loader-container.exit-active .loader-content {
+  transform: translateY(-80px);
+  opacity: 0;
+}
+
+.load-text span {
+  display: inline-block;
+  animation: wavePulse 1s infinite alternate;
+  animation-delay: calc(var(--letter-idx) * 0.08s);
+}
+
+@keyframes wavePulse {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.12; /* Ajustado ligeramente para suavizar el parpadeo visual */
+    transform: translateY(-5px);
+  }
+}

@@ -1,0 +1,166 @@
+/* ==========================================================================
+   ⚙️ DESIGN SYSTEM TOKENS (Ajustados con precisión quirúrgica)
+   ========================================================================== */
+:root {
+  /* Modo Claro: Líneas grises muy finas y limpias como la plantilla */
+  --guide-solid-light: rgba(0, 0, 0, 0.06);
+  --guide-dashed-light: rgba(0, 0, 0, 0.04);
+  --grid-pattern-light: rgba(0, 0, 0, 0.03); /* Un tris más fuerte para que tenga presencia */
+
+  /* Modo Oscuro: Contraste premium sutil */
+  --guide-solid-dark: rgba(255, 255, 255, 0.08);
+  --guide-dashed-dark: rgba(255, 255, 255, 0.04);
+  --grid-pattern-dark: rgba(255, 255, 255, 0.025);
+
+  --layout-max-width: 1280px;
+  --layout-padding: 40px;
+}
+
+/* Contenedor Base */
+.grid-guides-system {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contenedor limitado para Columnas y estructura de contenido */
+.guides-wrapper-context {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--layout-padding);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Ejes estructurales independientes */
+.guide-axis {
+  width: 1px;
+  height: 100%;
+}
+
+/* ==========================================================================
+   ⚡ VARIANT: COLUMNS (Sección estándar del portafolio)
+   ========================================================================== */
+.variant-columns {
+  & .guide-axis {
+    background: linear-gradient(180deg, var(--guide-dashed-light) 50%, transparent 50%);
+    background-size: 1px 16px;
+  }
+}
+
+.dark .variant-columns,
+#MainBanner.dark .variant-columns {
+  & .guide-axis {
+    background: linear-gradient(180deg, var(--guide-dashed-dark) 50%, transparent 50%);
+    background-size: 1px 16px;
+  }
+}
+
+/* ==========================================================================
+   📐 VARIANT: BLUEPRINT (404 Perfecto de Borde a Borde / w-full)
+   ========================================================================== */
+.variant-blueprint {
+  & .guide-axis {
+    background: linear-gradient(180deg, var(--guide-dashed-light) 50%, transparent 50%);
+    background-size: 1px 12px;
+  }
+  & .line-1, & .line-5 {
+    background: var(--guide-solid-light);
+  }
+}
+
+/* Contenedor global de las líneas del 404 */
+.blueprint-horizontal-lines {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.horizontal-stroke {
+  position: absolute;
+  left: 0;
+  width: 100%; /* W-full absoluto real */
+  height: 1px;
+}
+
+.variant-blueprint .stroke-top { top: 14%; background: var(--guide-solid-light); }
+.variant-blueprint .stroke-middle { top: 50%; background: linear-gradient(90deg, var(--guide-dashed-light) 50%, transparent 50%); background-size: 12px 1px; }
+.variant-blueprint .stroke-bottom { bottom: 22%; background: var(--guide-solid-light); }
+
+/* Modo oscuro para Blueprint */
+.dark .variant-blueprint,
+#MainBanner.dark .variant-blueprint {
+  & .guide-axis {
+    background: linear-gradient(180deg, var(--guide-dashed-dark) 50%, transparent 50%);
+    background-size: 1px 12px;
+  }
+  & .line-1, & .line-5 { background: var(--guide-solid-dark); }
+  & .stroke-top { background: var(--guide-solid-dark); }
+  & .stroke-middle { background: linear-gradient(90deg, var(--guide-dashed-dark) 50%, transparent 50%); background-size: 12px 1px; }
+  & .stroke-bottom { background: var(--guide-solid-dark); }
+}
+
+/* ==========================================================================
+   ⚡ VARIANT: GRID (El acabado idéntico a la plantilla)
+   ========================================================================== */
+.variant-grid .math-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  /* 💎 REJILLA PURA: Cuadrados perfectos, limpios y proporcionales */
+  background-image: 
+    linear-gradient(to right, var(--grid-pattern-light) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-pattern-light) 1px, transparent 1px);
+  background-size: 56px 56px; /* Tamaño ideal de cuadro técnico */
+  background-position: center top;
+
+  /* Suave desvanecimiento en el borde inferior para que se fusione con la siguiente sección */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, transparent 100%);
+}
+
+/* Modo oscuro para la variante Grid */
+.dark .variant-grid .math-grid-overlay,
+#MainBanner.dark .variant-grid .math-grid-overlay {
+  background-image: 
+    linear-gradient(to right, var(--grid-pattern-dark) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-pattern-dark) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   📱 BREAKPOINTS RESPONSIVOS
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+  :root { --layout-padding: 30px; }
+  .variant-grid .math-grid-overlay { background-size: 48px 48px; }
+}
+
+@media screen and (max-width: 768px) {
+  :root { --layout-padding: 20px; }
+  
+  .guide-axis:not(.line-1):not(.line-5) {
+    display: none;
+  }
+
+  .variant-grid .math-grid-overlay { 
+    background-size: 38px 38px; 
+  }
+  
+  .variant-blueprint {
+    & .stroke-top { top: 10%; }
+    & .stroke-bottom { bottom: 15%; }
+  }
+}

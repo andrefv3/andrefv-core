@@ -1,0 +1,141 @@
+.site-footer {
+  width: 100%;
+  padding: 2.5rem 2rem;
+  border-top: 1px solid var(--border-app);
+  background-color: var(--bg-app);
+  margin-top: auto; 
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-credits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer-copyright {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-app);
+  transition: color 0.3s ease;
+}
+
+.brand-name {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.footer-tagline {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+/* --- Contenedor de Redes Sociales --- */
+.footer-social-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1.5rem; /* Reducido un poco para equilibrar el tamaño de los iconos */
+}
+
+.footer-social-item {
+  position: relative; /* Base imprescindible para posicionar el tooltip */
+}
+
+.social-icon-link {
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  opacity: 0.65; /* Apariencia atenuada muy elegante por defecto */
+  transition: color 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
+              opacity 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.social-icon-link:hover {
+  color: var(--text-app);
+  opacity: 1;
+  transform: translateY(-2px); /* Micro-interacción premium al flotar */
+}
+
+/* --- Estilo del Tooltip Semántico --- */
+.icon-tooltip {
+  position: absolute;
+  bottom: 125%; /* Se despliega hacia arriba del icono */
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background-color: var(--text-app); /* Color inverso automático basado en tu tema */
+  color: var(--bg-app);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none; /* Evita que estorbe al hacer click */
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+              visibility 0.2s;
+}
+
+/* Triángulo decorativo inferior del tooltip */
+.icon-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: var(--text-app) transparent transparent transparent;
+}
+
+/* --- Activación del Tooltip en Hover --- */
+.footer-social-item:hover .icon-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 640px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .footer-social-list {
+    gap: 1.75rem;
+    justify-content: center;
+  }
+
+  /* Desactivamos la elevación en móviles para evitar saltos raros al pulsar */
+  .social-icon-link:hover {
+    transform: none;
+  }
+
+  /* Opcional: Ocultar tooltips en pantallas táctiles pequeñas para evitar bugs de focus */
+  .icon-tooltip {
+    display: none !important;
+  }
+}
