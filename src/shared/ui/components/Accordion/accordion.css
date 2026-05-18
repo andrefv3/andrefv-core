@@ -4,7 +4,7 @@
   transition: border-color 0.3s ease;
 }
 
-/* El uso del selector heredado :global u opcional limpia el DOM de JS */
+/* Using the inherited :global selector or the optional :global selector cleans up the JS DOM */
 body.dark .accordion-item {
   border-bottom: 1px solid var(--border-dark, #1f2937);
 }

@@ -13,16 +13,7 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-/* MODO CLARO (Efecto cristal translúcido heredando variable de opacidad clara) */
-.WhiteNav {
-  background-color: var(--bg-app-transparent); 
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px); 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid var(--border-app);
-}
-
-/* MODO OSCURO (Sincronizado con tu azul oscuro profundo y opacidad controlada) */
+/* THEME NAVIGATION: Fixed Premium Blur Context */
 .DarkNav {
   background-color: var(--bg-app-transparent);
   -webkit-backdrop-filter: blur(12px);
@@ -32,18 +23,10 @@
 }
 
 /* ==========================================================================
-   📱 ESTADOS DEL MENÚ MÓVIL ABIERTO (BLOQUEO DE TRANSPARENCIAS)
+  MOBILE RESPONSIVE STATES (TRANSPARENCY LOCK)
    ========================================================================== */
-/* Cuando el menú móvil está abierto, cancelamos el blur y forzamos fondos 100% SÓLIDOS 
-   usando directamente los tokens del sistema para blindar el fondo */
-.menu-mobile-open-light {
+#navbar-sticky.block {
   background-color: var(--bg-app) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.menu-mobile-open-dark {
-  background-color: var(--bg-app) !important; /* Toma dinámicamente tu azul oscuro real #0b0f19 */
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
@@ -58,72 +41,8 @@
   border-radius: 0px 0px 24px 24px;
 }
 
-.header-mobile-light {
-  border-bottom: 1px solid var(--border-app);
-  border-radius: 0px 0px 24px 24px;
-}
-
 /* ==========================================================================
-   REFACTOR DEL SWITCH DE TEMA (Variables de diseño unificadas)
-   ========================================================================== */
-.theme-switch {
-  position: relative;
-  display: inline-block;
-  width: 70px;
-  height: 35px;
-  z-index: 2;
-}
-
-.theme-switch-checkbox {
-  display: none;
-}
-
-.theme-switch-label {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: var(--btn-bg);
-  border-radius: 42px;
-  position: relative;
-  cursor: pointer;
-  border: 1px solid var(--border-app);
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.theme-switch-checkbox:checked + .theme-switch-label {
-  background-color: #1e293b; /* Mantengo tu Slate/Azul técnico de control */
-  border-color: var(--border-app);
-}
-
-.theme-switch-label::after {
-  content: '';
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #ffffff; /* El botón flotante interno se mantiene blanco */
-  top: 50%;
-  transform: translateY(-50%);
-  left: 5px;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  z-index: 2;
-}
-
-.theme-switch-checkbox:checked + .theme-switch-label::after {
-  transform: translate(33px, -50%);
-}
-
-.iconSwitch {
-  width: 16px;
-  height: 16px;
-  transform: translateY(-26px); 
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   ESTILOS DE TIPOGRAFÍA Y LINKS (Sincronizados)
+   TYPOGRAPHY, BRANDING & NAVIGATION LINKS
    ========================================================================== */
 .LogoIcon {
   display: flex;
@@ -132,13 +51,13 @@
 }
 
 .name-logo {
-  font-family: var(--font-epilogue); /* Uso de tu alias de Tailwind registrado */
+  font-family: var(--font-epilogue);
   text-transform: uppercase;
   font-size: 23px;
   letter-spacing: -1px;
   font-weight: 500;
   margin-left: 7px;
-  color: var(--text-app); /* Cambia automáticamente entre negro y blanco */
+  color: var(--text-app);
   transition: color 0.3s ease;
 }
 
@@ -155,26 +74,38 @@
   transition: color 0.3s ease;
 }
 
-/* Unificación de botones del menú responsive usando el token hover global */
-.btnOMenuMobile, .btnMenuMobileDark {
+/* ==========================================================================
+   INTERACTION CONTROLS (RESPONSIVE BUTTONS)
+   ========================================================================== */
+.btnMenuMobileDark {
   padding: 5px;
   border-radius: 10px;
   margin-left: 20px;
   color: var(--text-app);
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.2s ease, color 0.3s ease;
 }
 
-.btnOMenuMobile:hover,
 .btnMenuMobileDark:hover { 
-  background-color: var(--hover-bg); 
+  /* Use the token from hover or accent defined in the root */
+  background-color: var(--btn-hover); 
+  color: #ffffff;
 }
 
-.ltr-05 { letter-spacing: 0.5px; }
+.ltr-05 { 
+  letter-spacing: 0.5px; 
+}
 
-.Moon { color: #bababa; position: absolute; right: 11px; }
-.Sun { color: #f59e0b; position: absolute; left: 11px; }
-
+/* ==========================================================================
+   MEDIA QUERIES (BREAKPOINTS ADAPTATION)
+   ========================================================================== */
 @media (max-width: 700px) {
-  .content-header { padding: 16px 20px; }
-  .name-logo { font-size: 20px; }
+  .content-header { 
+    padding: 16px 20px; 
+  }
+  .name-logo { 
+    font-size: 20px; 
+  }
 }
