@@ -1,17 +1,17 @@
 import React from "react";
 import { Logo } from '@shared/ui';
 import { NAV_ITEMS } from "@shared/config/navigation";
-import { IoMdMoon, IoIosSunny, IoMdMenu, IoMdClose } from "react-icons/io";
+import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { useHeader } from "./useHeader";
 import "./header.css";
 
 export const Header = (): React.JSX.Element => {
-  const { isDark, isMenuOpen, toggleTheme, toggleMenu, scrollToSection } = useHeader();
+  const { isMenuOpen, toggleMenu, scrollToSection } = useHeader();
 
   return (
     <header id="HeaderPage">
-      <nav className={`header-nav-wrapper ${!isDark ? "WhiteNav" : 'DarkNav'} fixed w-full z-20 top-0 inset-s-0 items-center`}>
-        <div className={`content-header ${isMenuOpen && (isDark ? 'header-mobile-dark' : 'header-mobile-light')} max-w-7xl flex flex-wrap items-center justify-between mx-auto`}>
+      <nav className={`header-nav-wrapper DarkNav fixed w-full z-20 top-0 inset-s-0 items-center`}>
+        <div className={`content-header header-mobile-dark max-w-7xl flex flex-wrap items-center justify-between mx-auto`}>
          
           {/* Logo */}
           <a href="/" className="flex items-center LogoIcon" aria-label="Home">
@@ -20,7 +20,7 @@ export const Header = (): React.JSX.Element => {
 
           {/* Action area: Switch + Button of Mobile Menu */}
           <div className="flex md:order-2 space-x-3 items-center md:space-x-0 rtl:space-x-reverse">
-            <div className="theme-switch">
+            {/* <div className="theme-switch">
               <input
                 type="checkbox"
                 id="toggle"
@@ -35,12 +35,12 @@ export const Header = (): React.JSX.Element => {
               <span className="sunIcon">
                 <IoIosSunny className="iconSwitch Sun" />
               </span>
-            </div>
+            </div> */}
 
             <button
               onClick={toggleMenu}
               type="button"
-              className={`${isDark ? "btnMenuMobileDark" : "btnOMenuMobile"} inline-flex items-center w-10 h-10 justify-center text-sm text-gray-500 md:hidden`}
+              className={`btnMenuMobileDark inline-flex items-center w-10 h-10 justify-center text-sm text-gray-500 md:hidden`}
               aria-controls="navbar-sticky"
               aria-expanded={isMenuOpen ? "true" : "false"}
               aria-label="Toggle navigation menu"
@@ -59,7 +59,7 @@ export const Header = (): React.JSX.Element => {
                     href={item.path}
                     data-scroll-nav={item.id}
                     onClick={(e) => scrollToSection(item.id, e)}
-                    className={`ltr-05 py-2 px-3 nav__items text-gray-900 rounded ${isMenuOpen ? (isDark ? "hover:bg-gray-700" : "hover:bg-gray-100") : ""} md:p-0 ${isDark ? "text-white" : ''}`}
+                    className={`ltr-05 py-2 px-3 nav__items text-gray-900 rounded hover:bg-gray-700 md:p-0`}
                   >
                     <span className="rolling-text">{item.label}</span>
                   </a>

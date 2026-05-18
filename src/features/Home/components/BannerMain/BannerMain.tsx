@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '@shared/context';
 import { IoArrowDown } from "react-icons/io5";
 import { Guides } from '@shared/ui';
 import Avatar from '@images/content/memoji-hero.webp';
@@ -7,18 +6,17 @@ import { useHeader } from "@shared/ui";
 import './banner.css';
 
 export const BannerMain: React.FC = () => {
-  const { theme } = useTheme();
   const { scrollToSection } = useHeader();
     
   return (
     <section 
     id="MainBanner" 
-    className={`banner-layout-wrapper w-full ${theme === 'dark' ? 'dark' : ''}`}
+    className="banner-layout-wrapper w-full dark"
     data-scroll-index="1"
     >
     <Guides variant='grid' />
       <div className="containBanner">
-        {/* Contenido Izquierdo: Textos y Acciones */}
+        {/* Left Content: Text and Actions */}
         <div className="animate__contain">
           <h1 className="banner-title">
             Hi there <span className="wave-emoji">👋🏻</span>
@@ -33,7 +31,6 @@ export const BannerMain: React.FC = () => {
           </div>
 
           <div className="contain-btn-slide">
-            {/* Accesibilidad Staff: Botón puro con onClick semántico, sin etiquetas <a> muertas */}
             <button 
               onClick={(e) => scrollToSection(2, e as unknown as React.MouseEvent<HTMLAnchorElement>)}
               className="btnSlideAbout"
@@ -45,7 +42,7 @@ export const BannerMain: React.FC = () => {
           </div>
         </div>
         
-        {/* Contenido Derecho: Ilustración 3D Optimizada */}
+        {/* Right Content: Optimized 3D Illustration */}
         <div className="image__banner">
           <picture>
             <source srcSet={Avatar} type="image/webp" />
@@ -55,7 +52,7 @@ export const BannerMain: React.FC = () => {
               alt="Andrés Vega - Representación en avatar 3D sonriendo y saludando" 
               width={450} 
               height={446}
-              loading="eager" /* Carga inmediata: Es el LCP de la página */
+              loading="eager"
               fetchPriority="high"
               draggable="false"
             />

@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
-import { useTheme } from '@shared/context/';
 
 export const useHeader = () => {
-  const themeContext = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-  const toggleTheme = (): void => {
-    themeContext.toggleTheme();
-  };
 
   const toggleMenu = (): void => {
     setIsMenuOpen((prev) => !prev);
@@ -35,9 +29,7 @@ export const useHeader = () => {
   }, []);
 
   return {
-    isDark: themeContext.theme === 'dark',
     isMenuOpen,
-    toggleTheme,
     toggleMenu,
     scrollToSection,
   };

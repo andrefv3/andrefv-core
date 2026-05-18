@@ -1,4 +1,4 @@
-import { Project } from '@shared/types/project.types';
+import { Project } from '@shared/types';
 
 // Mock Data optimized with engineering metrics
 const PROJECTS_DATA: Project[] = [
