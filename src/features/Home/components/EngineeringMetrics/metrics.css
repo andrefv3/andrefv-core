@@ -1,0 +1,576 @@
+:root {
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --neon-glow: rgba(124, 58, 237, 0.04);
+}
+
+.metrics-section {
+  width: 100%;
+  background-color: var(--bg-app); 
+  padding: 4rem 1.25rem;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.metrics-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   DESKTOP & TABLET VIEWPORTS (12-Column Grid & Elastic Adjustments)
+   ========================================================================== */
+
+@media (min-width: 769px) {
+  .metrics-desktop-grid {
+    display: grid !important; /* Force grid layout context */
+    grid-template-columns: repeat(12, 1fr) !important;
+    gap: 1.5rem !important;
+    width: 100%;
+  }
+
+  /* Exact spatial distribution mapping based on structural design mockup */
+  .card-git-telemetry {
+    grid-column: span 7 !important;
+  }
+
+  .card-arch-primitives {
+    grid-column: span 5 !important;
+  }
+
+  .card-impact-telemetry {
+    grid-column: span 5 !important;
+  }
+
+  .card-execution-runtime {
+    grid-column: span 7 !important;
+  }
+
+  /* Desktop Bento Card Containers */
+  .bento-card-desktop {
+    background-color: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--border-app);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 300px;
+    box-sizing: border-box;
+    transition: border-color 0.35s var(--ease-premium), 
+                box-shadow 0.35s var(--ease-premium),
+                transform 0.35s var(--ease-premium);
+  }
+
+  .bento-card-desktop:hover {
+    transform: translateY(-2px);
+    border-color: rgba(124, 58, 237, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 30px var(--neon-glow);
+  }
+
+  /* Card Header Layout Control */
+  .card-d-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .card-d-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem !important;
+    font-weight: 600;
+    color: var(--text-app);
+  }
+
+  /* Elastic GitHub Stats Row: Fixes overlapping and layout squishing on tablets */
+  .desktop-stats-row {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important; /* Slightly increased min-width */
+    gap: 1.5rem !important;
+    align-items: flex-end !important; /* Forces all big numbers to sit on the exact same baseline */
+    margin: auto 0 !important;
+    padding: 1rem 0;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .d-stat-box {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-end !important; /* Pushes content down to align text baselines */
+    min-height: 85px; /* Establishes a safe zone so 2-line labels don't distort the grid */
+    min-width: 0;
+  }
+
+  .d-stat-num {
+    font-size: calc(1.8rem + 1vw) !important;
+    max-inline-size: 3rem !important;
+    font-weight: 700;
+    line-height: 0.9 !important; /* Tightened up to prevent extra bottom bounding space */
+    color: var(--text-app);
+    white-space: nowrap;
+  }
+
+  .d-stat-lbl {
+    font-size: 0.72rem !important; /* Slightly tuned down for premium balancing */
+    line-height: 1.2 !important; /* Prevents 2-line text from expanding the block spacing */
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* Simulated IDE / Code Editor Mock Block */
+  .code-editor-mock {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-app);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .editor-top-bar {
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border-app);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .ed-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .ed-dot.red { background-color: #ef4444; }
+  .ed-dot.yellow { background-color: #f59e0b; }
+  .ed-dot.green { background-color: #10b981; }
+
+  .ed-filename {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+  }
+
+  .desktop-code-display {
+    padding: 1rem 1.25rem;
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #a7f3d0;
+    overflow-x: auto;
+    font-family: monospace;
+    text-align: left;
+  }
+
+  /* Architectural System Badges Layout Grid */
+  .desktop-badges-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .d-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-app);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-app);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+  }
+
+  /* Footers and Text Structures */
+  .card-d-footer {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-app);
+    padding-top: 0.85rem;
+    width: 100%;
+    margin-top: 1rem;
+    text-align: left;
+  }
+
+  .arch-narrative-desktop, .impact-footer-desktop {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 0;
+    text-align: left;
+    padding-left: 0.25rem;
+  }
+
+  /* Elastic Observability Container: Wraps items cleanly on intermediate screens */
+  .impact-stats-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    justify-content: space-between;
+    margin: auto 0;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .impact-box {
+    display: flex;
+    flex-direction: column;
+    min-width: 120px; /* Protects content structural footprint */
+  }
+
+  .impact-num {
+    font-size: calc(1.6rem + 0.8vw) !important; /* Fluid scaling typography */
+    font-weight: 700;
+    color: var(--text-app);
+    line-height: 1.1;
+  }
+
+  .impact-lbl {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  .live-badge-container {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(34, 197, 94, 0.03);
+    border: 1px solid rgba(34, 197, 94, 0.1);
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+  }
+
+  .live-dot-pulse {
+    width: 6px;
+    height: 6px;
+    background-color: #22c55e;
+    border-radius: 50%;
+  }
+
+  .live-text {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #4ade80;
+    text-transform: uppercase;
+  }
+}
+
+/* Light Theme Contrast Fallback Layer */
+[data-theme="light"] .bento-card-desktop {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+/* ==========================================================================
+   📱 MOBILE ADAPTATION SYSTEM (High Density UI / Priority Stack Engine)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Hide the desktop viewport layout entirely to block structure duplicity */
+  .metrics-desktop-grid {
+    display: none !important;
+  }
+
+  .metrics-section {
+    padding: 2rem 1rem !important;
+    background-color: var(--bg-app);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .metrics-mobile-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ------------------------------------------------------------------------
+     1. HORIZONTAL KPI STRIP (Overflow-X Touch Scroll Engine)
+     ------------------------------------------------------------------------ */
+  .kpi-strip {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.75rem !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    padding: 0.25rem 0 0.75rem 0 !important;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove scrollbars to guarantee a premium interface footprint */
+  .kpi-strip::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .kpi-chip {
+    flex-shrink: 0 !important;
+    scroll-snap-align: start !important;
+    background: rgba(255, 255, 255, 0.01) !important;
+    border: 1px solid var(--border-app) !important;
+    padding: 0.65rem 1rem !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.15rem !important;
+    min-width: 110px;
+    box-sizing: border-box;
+  }
+
+  [data-theme="light"] .kpi-chip {
+    background: rgba(0, 0, 0, 0.01) !important;
+  }
+
+  .kpi-value {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--text-app) !important;
+    font-family: monospace !important;
+  }
+
+  .kpi-label {
+    font-size: 0.6rem !important;
+    color: var(--text-muted) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  /* ------------------------------------------------------------------------
+     2. SEGMENTED CONTROL (Raycast / Linear Style Contextual Tabs)
+     ------------------------------------------------------------------------ */
+  .segmented-control {
+    display: flex !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid var(--border-app) !important;
+    padding: 0.25rem !important;
+    border-radius: 10px !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  [data-theme="light"] .segmented-control {
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+
+  .tab-button {
+    flex: 1 !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    color: var(--text-muted) !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 0 !important;
+    border-radius: 7px !important;
+    cursor: pointer !important;
+    transition: all 0.2s var(--ease-premium) !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tab-button.active {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-app) !important;
+  }
+
+  [data-theme="light"] .tab-button.active {
+    background: rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* ------------------------------------------------------------------------
+     3. PRIORITY STACK LAYOUT (Dual Density Adaptive Accordion Engine)
+     ------------------------------------------------------------------------ */
+  .priority-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .bento-card-mobile {
+    background: rgba(255, 255, 255, 0.01) !important;
+    border: 1px solid var(--border-app) !important;
+    border-radius: 14px !important;
+    padding: 0.9rem 1.1rem !important;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: max-height 0.3s var(--ease-premium), 
+                border-color 0.3s var(--ease-premium), 
+                opacity 0.25s ease !important;
+  }
+
+  [data-theme="light"] .bento-card-mobile {
+    background: rgba(0, 0, 0, 0.01) !important;
+  }
+
+  /* Inactive / Compact State (Strictly bound to 52px high for optimal visual grouping) */
+  .bento-card-mobile.compact {
+    max-height: 52px !important;
+    opacity: 0.4 !important;
+  }
+
+  /* Active / Expanded State Layer */
+  .bento-card-mobile.expanded {
+    max-height: 380px !important;
+    opacity: 1 !important;
+    border-color: rgba(124, 58, 237, 0.3) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+  }
+
+  /* Tactical Accordion Trigger Target Area */
+  .card-mobile-trigger {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 24px !important;
+    cursor: pointer !important;
+  }
+
+  .card-mobile-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: var(--text-app) !important;
+  }
+
+  .icon-telemetry {
+    color: #7c3aed !important; /* Identity branding violet token */
+    font-size: 1.1rem !important;
+    flex-shrink: 0;
+  }
+
+  .chevron {
+    font-size: 0.65rem !important;
+    color: var(--text-muted) !important;
+    transition: transform 0.25s ease;
+  }
+
+  /* Dynamic Content Wrapper (Progressive Disclosure Implementation) */
+  .card-mobile-content {
+    margin-top: 1rem !important;
+    width: 100% !important;
+    transition: opacity 0.2s ease-in-out !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bento-card-mobile.compact .card-mobile-content {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  .bento-card-mobile.expanded .card-mobile-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Internal Grid Layer for GitHub Metrics Dashboard */
+  .mobile-stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    padding: 0.25rem 0 !important;
+  }
+
+  .m-stat-box {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .m-stat-num {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    color: var(--text-app) !important;
+    line-height: 1.1 !important;
+  }
+
+  .m-stat-lbl {
+    font-size: 0.65rem !important;
+    color: var(--text-muted) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+    margin-top: 0.25rem;
+  }
+
+  .mobile-subtext {
+    font-size: 0.7rem !important;
+    font-family: monospace !important;
+    color: var(--text-muted) !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .mobile-narrative {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+    color: var(--text-muted) !important;
+    margin: 0 !important;
+  }
+
+  /* Simulated Mobile Code Block Container */
+  .mobile-code-block {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid var(--border-app) !important;
+    padding: 0.75rem !important;
+    border-radius: 8px !important;
+    margin: 0 !important;
+    overflow-x: auto !important;
+  }
+
+  .mobile-code-block code {
+    font-size: 0.7rem !important;
+    line-height: 1.4 !important;
+    color: #a7f3d0 !important;
+    font-family: monospace !important;
+    display: block;
+    text-align: left;
+  }
+
+  /* Architectural Primitive Badge Inline Flex System */
+  .mobile-badges-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+  }
+
+  .m-badge {
+    font-size: 0.65rem !important;
+    font-weight: 600 !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid var(--border-app) !important;
+    padding: 0.3rem 0.55rem !important;
+    border-radius: 6px !important;
+    color: var(--text-app) !important;
+  }
+
+  [data-theme="light"] .m-badge {
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+}

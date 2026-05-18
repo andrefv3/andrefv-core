@@ -1,13 +1,10 @@
-/* ==========================================================================
-   🧱 LAYOUT BASE (MODO CLARO POR DEFECTO)
-   ========================================================================== */
 .error-page-layout {
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  background-color: #ffffff; /* Fondo claro por defecto */
+  background-color: var(--bg-app); 
   overflow-x: hidden;
   z-index: 1;
 }
@@ -21,7 +18,7 @@
   align-items: center;
   gap: 1.5rem;
   text-align: center;
-  z-index: 10; /* Por encima de las líneas de la cuadrícula */
+  z-index: 10; /* It takes priority over the Blueprint grid. */
   padding: 40px 20px;
 }
 
@@ -41,31 +38,32 @@
 }
 
 .error-heading {
-  font-family: 'Grotesk-Medium', sans-serif;
+  font-family: var(--font-grotesk);
   font-weight: 600;
   font-size: 2.3rem;
   letter-spacing: -0.02em;
-  color: #000000; /* Texto negro en modo claro */
+  color: var(--text-app);
   margin: 0;
-  transition: color 0.3s ease;
 }
 
 .error-subtext {
+  font-family: var(--font-sora);
   font-size: 1.1rem;
   line-height: 1.5;
-  color: #666666;
+  color: var(--text-muted);
   margin: 0;
   max-width: 85%;
-  transition: color 0.3s ease;
 }
 
+/* ==========================================================================
+  INTERACTION & SYSTEM BUTTONS (INVERTED STYLE)
+   ========================================================================== */
 .return-link-wrapper {
   width: 100%;
 }
 
-/* 🕹️ SISTEMA DE BOTONES E INTERACTIVIDAD */
 .btn-return-main {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-epilogue);
   font-size: 1.1rem; 
   font-weight: 600;
   width: 100%;
@@ -75,66 +73,36 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  background-color: #000000;
-  color: #ffffff;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  
+  /* Elegant inverted style: White button with dark blue text */
+  background-color: var(--text-app);
+  color: var(--bg-app);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    background-color: #222222;
-    transform: translateY(-2px);
+    background-color: #e2e8f0;
+    transform: translate3d(0, -2px, 0);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.05);
   }
+  
   &:active {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 /* ==========================================================================
-   CONFIGURACIÓN PREMIUM MODO OSCURO (Sincronizado con el Body)
-   ========================================================================== */
-body.dark {
-  & .error-page-layout {
-    /* Usamos exactamente el mismo azul oscuro profundo que tu Banner Principal */
-    background-color: #0b0f19; 
-  }
-
-  & .error-heading {
-    color: #ffffff;
-  }
-
-  & .error-subtext {
-    color: #94a3b8; /* Gris azulado suave de alta legibilidad */
-  }
-
-  & .btn-return-main {
-    background-color: #ffffff;
-    color: #0b0f19; /* El texto del botón toma el color del fondo oscuro */
-
-    &:hover {
-      background-color: #e2e8f0;
-      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.05);
-    }
-  }
-
-  /* 📐 Forzamos a que las líneas del Blueprint muten al color oscuro */
-  & .variant-blueprint {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    
-    & .guide-axis {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 50%, transparent 50%);
-      background-size: 1px 12px;
-    }
-    & .line-1, & .line-5 { background: rgba(255, 255, 255, 0.08); }
-    & .stroke-top { background: rgba(255, 255, 255, 0.08); }
-    & .stroke-middle { background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 50%, transparent 50%); background-size: 12px 1px; }
-    & .stroke-bottom { background: rgba(255, 255, 255, 0.08); }
-  }
-}
-
-/* ==========================================================================
-   📐 RESPONSIVE COMPACTO
+   RESPONSIVE COMPACTO
    ========================================================================== */
 @media screen and (max-width: 640px) {
-  .error-heading { font-size: 1.8rem; }
-  .error-subtext { font-size: 0.95rem; max-width: 100%; }
-  .btn-return-main { font-size: 0.9rem; padding: 0.85rem 1.2rem; }
+  .error-heading { 
+    font-size: 1.8rem; 
+  }
+  .error-subtext { 
+    font-size: 0.95rem; 
+    max-width: 100%; 
+  }
+  .btn-return-main { 
+    font-size: 0.9rem; 
+    padding: 0.85rem 1.2rem; 
+  }
 }

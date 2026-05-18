@@ -3,7 +3,7 @@
    ========================================================================== */
 #MainBanner {
   width: 100%;
-  min-height: 100vh; /* Asegura abarcar el viewport en vez de depender de height fijos */
+  min-height: 100vh; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-/* Contenedor adaptativo premium usando CSS Grid */
+/* Adaptative Container Premium using CSS Grid */
 .containBanner {
   width: 100%;
   max-width: 1280px;
@@ -35,11 +35,11 @@
   flex-direction: column;
   justify-content: center;
   animation: slideFromBottom 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: transform, opacity; /* Optimización del ciclo de renderizado por GPU */
+  will-change: transform, opacity; /* Optimization of cicle of rendering for GPU */
 }
 
 .banner-title {
-  font-family: var(--font-epilogue); /* Sincronizado con tus tokens globales */
+  font-family: var(--font-epilogue); /* Sync with global tokens */
   font-size: clamp(40px, 5.5vw, 80px); 
   font-weight: 800;
   text-transform: uppercase;
@@ -50,16 +50,16 @@
   transition: color 0.3s ease;
 }
 
-/* Efecto de texto con contorno transparente adaptativo */
+/* Text Effect with Transparent Stroke Adaptative */
 .banner-name-stroke {
   color: transparent;
   -webkit-text-stroke: 1px var(--text-app);
   transition: -webkit-text-stroke 0.3s ease;
 }
 
-/* Contenedor de párrafo optimizado */
+/* Paragraph Container */
 .text-container {
-  max-width: 520px; /* Evita líneas de texto demasiado largas (mejora legibilidad) */
+  max-width: 520px; /* Avoid text-lines very long (better legibility) */
   margin-bottom: 35px;
 
   & p {
@@ -67,12 +67,12 @@
     line-height: 1.7;
     font-size: 18px;
     font-weight: 300;
-    color: var(--text-muted); /* Cambia automáticamente entre slate-600 y slate-400 */
+    color: var(--text-muted);
     transition: color 0.3s ease;
   }
 }
 
-/* Contenedor e interactividad del botón (Híbrido e Invertido síncronamente) */
+/* Button Container and Interactivity (Hybrid and Inverted Synchronously) */
 .contain-btn-slide {
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@
   border: none;
   cursor: pointer;
   
-  /* Sombra sutil que se adapta usando las variables semánticas de botón de tu index.css */
+  /* Soft shadow that adapts using the semantic variables of the index.css button. */
   box-shadow: 0 10px 25px var(--border-app);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
               background-color 0.25s ease, 
@@ -107,13 +107,13 @@
   }
 
   &:hover {
-    /* Al hacer hover, usamos tus tokens semánticos de botones reactivos */
+    /* When hovering, we use your semantic tokens from reactive buttons */
     background-color: var(--btn-hover);
     color: var(--text-app);
     transform: translate3d(0, -2px, 0);
     
     & svg {
-      transform: translate3d(0, 3px, 0); /* Animación sutil de rebote acelerada por hardware */
+      transform: translate3d(0, 3px, 0); /* Subtle hardware-accelerated bounce animation */
     }
   }
 
@@ -138,7 +138,7 @@
   height: auto;
   object-fit: contain;
   user-select: none;
-  /* Efecto levitación premium usando aceleración gráfica nativa */
+  /* Premium levitation effect using native graphics acceleration */
   animation: floatAvatar 6s ease-in-out infinite;
   will-change: transform;
 }
@@ -162,11 +162,11 @@
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -15px, 0); /* Efecto flotante suave sin alterar el flujo del layout */
+    transform: translate3d(0, -15px, 0); /* Smooth floating effect without disrupting the layout flow */
   }
 }
 
-/* Pantallas de Escritorio Medianas / Portátiles */
+/* Desktop Medium Screens / Laptops */
 @media (max-width: 1150px) {
   .containBanner {
     padding: 100px 30px 40px;
@@ -177,7 +177,7 @@
 /* Mobile & Tablets (Pass to Vertical Layout of a Single Column) */
 @media (max-width: 950px) {
   .containBanner {
-    grid-template-columns: 1fr; /* Una columna pura */
+    grid-template-columns: 1fr; /* A pure column */
     text-align: center;
     justify-content: center;
     padding-top: 140px;
@@ -185,7 +185,7 @@
   }
 
   .animate__contain {
-    align-items: center; /* Centra los textos y el botón corporativo */
+    align-items: center; /* Centers the text and the corporate button */
   }
 
   .text-container {
@@ -193,7 +193,7 @@
   }
 
   .image__banner {
-    order: -1; /* Envía la imagen del Avatar arriba del texto en móviles (Mejor UX visual) */
+    order: -1; /* Sends the avatar image above the text on mobile devices (Better visual UX) */
   }
 
   .avatar-banner {
